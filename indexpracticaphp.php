@@ -3,15 +3,46 @@ $name = $_REQUEST['name'];
 echo $name, "<br>";
 $email = $_REQUEST['email'];
 echo $email, "<br>";
-$phone = $_REQUEST['phone'];
-echo $phone, "<br>";
-$message = $_REQUEST['message'];
-echo $message, "<br>";
-var_dump($name);
+$comment = $_REQUEST['comment'];
+echo $comment, "<br>";
+var_dump($_REQUEST);
 foreach($_REQUEST as $key =>$value){
-	echo "field", "$key",":",$value, 
+	echo "field_", "$key",":",$value, 
 	"<br>";
 }
+
+
+/*************************************/
+//connection
+$conn = mysqli_connect(
+"127.0.0.1",
+"root",
+"root",
+"SuperSST"
+);
+
+//check connection
+if(!$conn){
+	echo "failed";
+}
+else {
+	echo "success";
+}
+
+//Perform query
+
+if (mysqli_query($conn, "INSERT INTO comentarios(name,email,comment) VALUES('$name','$email','$comment')")) {
+	echo "inserted";
+} else {
+	echo "not inserted";
+}
+
+
+mysqli_close($conn);
+
+/*************************************/
+
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -32,19 +63,19 @@ foreach($_REQUEST as $key =>$value){
 			<div class="col-sm">
 				Contact us!
 				<form>
-				<label for="nameid">Name</label>
-				<input type="text" name="name" id="nameid">
-				</br>
-				<label for="email">Email</label>
-				<input type="text" name="email" id="emailid">
-				</br>
-				<label for="phone">Phone</label>
-				<input type="text" name="phone" id="phoneid">
-				</br>
-				<label for="message">Message</label>
-				<textarea name="message" id="messageid" rows="3" cols="40"></textarea>
-				</br>
-				<input type="submit" value="Submit">
+				  <div class="form-group">
+					<label for="nameid">Name</label>
+					<input type="text" name="name" class="form-control" id="nameid">
+				  </div>
+				  <div class="form-group">
+					<label for="emailid">Email</label>
+					<input type="email" name="email" class="form-control" id="emailid">
+				  </div>
+				  <div class="form-group">
+					<label for="commentid">Comment</label>
+					<textarea name="comment" id="commentid" rows="3" cols="40" class="form-control"></textarea>
+				  </div>
+				  <button type="submit" class="btn btn-primary">Submit</button>
 				</form>
 			</div>
   		</div>
