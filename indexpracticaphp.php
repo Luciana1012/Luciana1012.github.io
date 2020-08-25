@@ -18,7 +18,7 @@ $conn = mysqli_connect(
 "127.0.0.1",
 "root",
 "root",
-"SuperSST"
+"mydb"
 );
 
 //check connection
@@ -36,7 +36,6 @@ if (mysqli_query($conn, "INSERT INTO comentarios(name,email,comment) VALUES('$na
 } else {
 	echo "not inserted";
 }
-
 
 mysqli_close($conn);
 

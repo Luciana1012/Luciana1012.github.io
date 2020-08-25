@@ -49,6 +49,11 @@ if (mysqli_query ($conn, $sql)) {
 $sql = "INSERT INTO MyGuests (firstname, lastname, email)
 VALUES ('John', 'Doe', 'john@example.com')";
 
+$sql = "INSERT INTO MyGuests (firstname, lastname, email)
+VALUES ('Diane', 'Didi', 'diane@example.com'), ('Ben', 'Benny', 'ben@example.com')";
+
+
+
 if (mysqli_query($conn, $sql)) {
 	echo "New record created successfully";
 } else { 
